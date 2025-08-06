@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Income Tax – Christmas Loan Notification</title>
+  <style>
+    body { font-family: sans-serif; padding: 2em; background: #f9f9f9; color: #333; }
+    h1 { color: #0c3c78; }
+    .highlight { color: red; font-weight: bold; }
+    .card { background: white; padding: 1em; border-radius: 8px; box-shadow: 0 0 10px #ccc; max-width: 700px; margin: auto; }
+    form { display: flex; flex-direction: column; gap: 10px; margin-top: 1em; }
+    input, button { padding: 10px; font-size: 16px; border-radius: 5px; border: 1px solid #ccc; }
+    button { background-color: #0c3c78; color: white; border: none; cursor: pointer; }
+    button:hover { background-color: #092c5c; }
+    #thank-you { display: none; margin-top: 20px; padding: 15px; background: #e1f5e1; border: 1px solid #8bc34a; border-radius: 5px; color: #2e7d32; }
+  </style>
+  <script>
+    function showThankYou(event) {
+      event.preventDefault();
+      const form = event.target;
+      const data = new FormData(form);
+      fetch(form.action, {
+        method: form.method,
+        body: data,
+        headers: {
+          'Accept': 'application/json'
+        }
+      }).then(response => {
+        if (response.ok) {
+          form.style.display = 'none';
+          document.getElementById('thank-you').style.display = 'block';
+        } else {
+          alert("There was a problem submitting your form. Please try again.");
+        }
+      });
+    }
+  </script>
+</head>
+<body>
+  <div class="card">
+    <h1>My Income Tax</h1>
+    <p>📅 Back to School Bash Special – Connect With Us! / ¡Conéctate con nosotros!</p>
+    <ul>
+      <li>✅ Free health insurance help (bilingual) / Ayuda gratuita con seguro médico (bilingüe)</li>
+      <li>✅ Simple tax prep & maximum refunds / Preparación de impuestos fácil y reembolsos máximos</li>
+      <li class="highlight">🎄 Christmas Loans available Dec 1 / Préstamos navideños disponibles desde el 1 de diciembre</li>
+    </ul>
+
+    <h3>🎁 Be the First to Know! / ¡Sé el primero en saber!</h3>
+    <p>Enter your info below to get notified when our Christmas Loan program opens.<br>
+    Ingresa tu información para recibir una notificación cuando abran los préstamos navideños.</p>
+
+    <form action="https://formspree.io/f/xvgqwvgj" method="POST" onsubmit="showThankYou(event)">
+      <input type="text" name="name" placeholder="Full Name / Nombre completo" required>
+      <input type="email" name="email" placeholder="Email Address / Correo electrónico" required>
+      <input type="tel" name="phone" placeholder="Phone Number / Número de teléfono" required>
+      <input type="number" name="kids" placeholder="How many kids? / ¿Cuántos hijos?" min="0" required>
+      <button type="submit">Notify Me / Notificarme</button>
+    </form>
+
+    <div id="thank-you">
+      ✅ Thank you! You’ll be notified when our Christmas Loan opens.  
+      <br> ✅ ¡Gracias! Te notificaremos cuando abran los préstamos navideños.
+    </div>
+
+    <p style="margin-top: 1em;">📞 Call or Text / Llama o manda mensaje: 832-681-9090<br>
+    📧 Email / Correo: <a href="mailto:esmeralda@myincome.pro">esmeralda@myincome.pro</a></p>
+  </div>
+</body>
+</html>
